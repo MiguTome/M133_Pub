@@ -69,7 +69,13 @@ let todos = [
 
 function updateToDoListOnScreen() {
   const todoListElement = document.getElementById("todolist");
-  todos.sort();
+  todos.sort(
+    (a, b) => {
+      firstText = a.titel.toUpperCase();
+      secondText = b.titel.toUpperCase();
+      return (firstText > secondText) ? 1 : ((secondText > firstText) ? -1 : 0)}
+  );
+  localStorage.setItem("ToDo's", JSON.stringify(todos, ['titel', 'erledigt']));
 
   // Liste leeren
   todoListElement.innerHTML = "";
